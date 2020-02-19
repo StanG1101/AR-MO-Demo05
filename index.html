@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Realidad Aumentada Web: Demo04</title>
+    <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+    <script src="https://raw.githack.com/jeromeetienne/AR.js/2.1.6/aframe/build/aframe-ar.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.0.1/dist/aframe-extras.min.js"></script>
+    <script src="javascript.js"></script>
+    <!-- <script>
+        AFRAME.registerComponent('loader', {
+            init: function () {
+                let loader = document.querySelector("#loadingEl")
+                this.el.addEventListener('modelo-loaded', e => {
+                    console.log('loaded')
+                    loader.setAttribute("visible", "false")
+                })
+            }
+        });
+
+    </script>-->
+</head>
+
+<body style='margin : 0px; overflow: hidden;'>
+    <a-scene embedded arjs="debugUIEnabled: false;" vr-mode-ui="enabled: false">
+        <a-asset>
+            <a-asset-item id="modelo" src="scene.gltf"></a-asset-item>
+        </a-asset>
+        <a-asset>
+            <a-asset-item id="modelo01" src="scene01.gltf"></a-asset-item>
+        </a-asset>
+        <a-asset>
+            <a-asset-item id="modelo02" src="scene02.gltf"></a-asset-item>
+        </a-asset>
+
+        <a-marker preset='hiro'>
+            <a-entity id="loadingEl" gltf-model="#modelo" scale="0.3 0.3 0.3" position="0 0 0" animation-mixer loader>
+            </a-entity>
+
+            <a-entity gltf-model="#modelo01" scale="0.1 0.1 0.1" position="0 2 -5"
+                animation="property: position; to: 0 2 5; dur: 12000; easing: linear" animation-mixer loader>
+            </a-entity>
+
+            <a-entity gltf-model="#modelo01" scale="0.15 0.15 0.15" position="1 2.5 -5"
+                animation="property: position; to: 1 2.5 5; dur: 10000; easing: linear" animation-mixer loader>
+            </a-entity>
+
+            <a-entity gltf-model="#modelo01" scale="0.15 0.15 0.15" position="-1 2.5 -5"
+                animation="property: position; to: -1 2.5 5; dur: 15000; easing: linear" animation-mixer loader>
+            </a-entity>
+
+           
+        </a-marker>
+    </a-scene>
+    <!--<script src="code-F.js"></script>-->
+    <script>
+        const sceneEl = document.querySelector('a-scene');
+        sceneEl.addEventListener('loaded', () => {
+            sceneEl.camera = new THREE.PerspectiveCamera();
+        });
+
+    </script>
+</body>
+
+</html>
